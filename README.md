@@ -11,11 +11,11 @@
  $$ |          \$$$$$$  |                             
  \__|           \______/                            
 
-Python Planetary Physics Package
+The Python Planetary Physics Package
 ```
 
 # Plynet
-Python Planetary Package
+The Python Planetary Package
 
 Presentation
 ------------
