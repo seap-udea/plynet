@@ -11,6 +11,7 @@
  $$ |          \$$$$$$  |                             
  \__|           \______/                            
 
+Python Planetary Physics Package
 ```
 
 # Plynet
