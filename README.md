@@ -13,8 +13,7 @@
 
 ```
 
-# Plynet
-The Python Planetary Package
+# The Python Planetary Package
 
 Presentation
 ------------
