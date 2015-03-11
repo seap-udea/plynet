@@ -20,6 +20,13 @@ Presentation
 
 **Plynet** is a package.
 
+
+History of Development
+----------------------
+
+**Plynet** started as a course project in 2011.  In that time Camilo,
+Sebastian Bustamante and Nataly.
+
 Getting a copy
 --------------
 

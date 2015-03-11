@@ -17,10 +17,24 @@
 ############################################################
 #!/bin/bash
 
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#CHECKING IMPORT
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 echo -n "Checking plynet import..."
 python -c "import plynet"
 if [ $? ];then
    echo "Done."
+else
+    echo "Failed."
+fi
+
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#CHECKING DATA
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+echo -n "Checking data directory..."
+if [ -d /opt/plynet_data ]
+then
+    echo "Done."
 else
     echo "Failed."
 fi
