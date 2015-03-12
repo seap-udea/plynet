@@ -39,6 +39,8 @@ $ git clone --branch master http://github.com/seap-udea/plynet.git
 If you want to get a different branch of the project just change
 "master" by the name of the branch.
 
+This is the developer copy.  You may also 
+
 Instructions for the contirbutor
 --------------------------------
 
@@ -76,6 +78,40 @@ Instructions for the contirbutor
 
    ```
    $ git checkout master
+   ```
+
+Managing Data
+-------------
+
+Plynet comes along with diverse data sources (planetary interior
+structure models, stellar evolutionary models, planetary database,
+etc.)
+
+Contributors
+............
+
+Before distributing the package, developers should pack the data in a
+proper container.  
+
+This operation is only recommended when something in the data changes
+or when new data is added.  For packing the data go to the
+"plynet_data" or "data" directory and run:
+
+   ```
+   $ bash packdata.sh
+   ```
+
+Then, have a cup of coffee, this procedure could take a long time.
+
+Final users
+...........
+
+Once the package has been obtained the data is saved in the directory
+`/opt/plynet_data`.  To avoid unpack the data during install it is
+recommended to run the unpack script:
+
+   ```
+   $ bash /opt/plynet_data/packdata.sh
    ```
 
 Licensing

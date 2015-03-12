@@ -18,22 +18,40 @@
 from setuptools import setup, find_packages
 from distutils.command.install_scripts import install_scripts
 from distutils.command.install_data import install_data
-from os import path,system
-import sys
 
+############################################################
+#GLOBAL VARIABLES
+############################################################
+DATA_INSTALL=False
+DATA_DIR="/opt/plynet_data"
+
+############################################################
+#INSTALLATION PROCEDURES
+############################################################
 class install_scripts_custom(install_scripts):
     def run(self):
         install_scripts.run(self)
-        print "Creating plynet_data...",
-        system("mkdir -p /opt/plynet_data")
-        print "Done."
+        if DATA_INSTALL:
+            print "Creating plynet_data...",
+            system("mkdir -p %s"%DATA_DIR)
+            print "Done."
 
 class install_data_custom(install_data):
     def run(self):
         install_data.run(self)
-        print "Unpacking data...",
-        system("bash /opt/plynet_data/unpack.sh")
-        print "Done."
+        if DATA_INSTALL:
+            print "Unpacking data...",
+            system("bash -x %s/unpack.sh &> /tmp/pack.log"%DATA_DIR)
+            print "Done."
+
+############################################################
+#SETUP
+############################################################
+if DATA_INSTALL:
+    data_files=[('%s'%DATA_DIR,
+                 ['data/pack.tar','data/unpack.sh','data/packdata.sh'])]
+else:
+    data_files=[]
 
 setup(
     name        = "plynet",
@@ -52,7 +70,7 @@ setup(
         ],
     keywords    = "plynet planets",
     packages    = find_packages(exclude=['contrib','docs','tests*']),
-    data_files  = [('/opt/plynet_data',['data/data.tgz','data/unpack.sh'])],
+    data_files  = data_files,
     scripts     = ['plynet_check'],
     cmdclass    = {'install_scripts':install_scripts_custom,
                    'install_data':install_data_custom}

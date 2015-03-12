@@ -17,7 +17,9 @@
 ############################################################
 #!/bin/bash
 rundir=$(dirname $0)
-echo "Unpacking data..."
-cat pack/data_* > /tmp/BHMdata.tgz
+echo "Untar data..."
+tar xf $rundir/pack.tar -C $rundir
+echo "Gathering data..."
+cat $rundir/pack/data_* > /tmp/data.tgz
 echo "Unpacking data into data directory..."
-tar zxf /tmp/BHMdata.tgz -C BHM/
+tar zxf /tmp/data.tgz -C $rundir
