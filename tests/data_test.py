@@ -13,19 +13,16 @@
 #                                                          #
 # Jorge I. Zuluaga [)] 2015                                #
 ############################################################
-# Test main package
+# Test numeric package
 ############################################################
-from plynet import *
+from plynet.data import *
 
-print titleShow("Testing Main Package")
+print titleShow("Testing Data Module")
 
-#DICT TO OBJ
-res=dict2obj(dict(a=1,b=2))
-print res.a
-
-res2=copyObject(res)
-
-print BASEDIR
-print DATADIR
 print MODULE_NAME
+
+confirmed=loadExoplanetCatalogue(systems=CONFIRMED_SYSTEMS,
+                                 verbose=True)
+kepler=loadExoplanetCatalogue(systems=KEPLER_SYSTEMS,
+                              verbose=True)
 

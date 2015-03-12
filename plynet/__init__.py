@@ -19,7 +19,7 @@
 ############################################################
 #BASIC REQUIRED PACKAGES
 ############################################################
-import os
+import os,commands
 
 ############################################################
 #GLOBAL VARIABLES
@@ -195,6 +195,7 @@ def titleShow(msg,char="*",size="auto"):
 #LOAD CONFIGURATION
 ###################################################
 loadConfiguration(BASEDIR+"/plynet.cfg",locals())
+loadConfiguration(BASEDIR+"/datadir.cfg",locals())
 
 ###################################################
 #TEST

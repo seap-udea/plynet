@@ -13,19 +13,10 @@
 #                                                          #
 # Jorge I. Zuluaga [)] 2015                                #
 ############################################################
-# Test main package
+# Test numeric package
 ############################################################
-from plynet import *
+from plynet.numeric import *
 
-print titleShow("Testing Main Package")
+print titleShow("Testing Numeric Package")
 
-#DICT TO OBJ
-res=dict2obj(dict(a=1,b=2))
-print res.a
-
-res2=copyObject(res)
-
-print BASEDIR
-print DATADIR
 print MODULE_NAME
-

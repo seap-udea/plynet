@@ -13,19 +13,9 @@
 #                                                          #
 # Jorge I. Zuluaga [)] 2015                                #
 ############################################################
-# Test main package
+# Test all
 ############################################################
-from plynet import *
+from plynet.full import *
 
-print titleShow("Testing Main Package")
-
-#DICT TO OBJ
-res=dict2obj(dict(a=1,b=2))
-print res.a
-
-res2=copyObject(res)
-
-print BASEDIR
-print DATADIR
+print titleShow("Testing Full Package")
 print MODULE_NAME
-

@@ -18,12 +18,13 @@
 from setuptools import setup, find_packages
 from distutils.command.install_scripts import install_scripts
 from distutils.command.install_data import install_data
+from os import system
 
 ############################################################
 #GLOBAL VARIABLES
 ############################################################
 DATA_INSTALL=False
-DATA_DIR="/opt/plynet_data"
+DATA_DIR="/opt/plynet_data/" #Don't forget to end with "/"
 
 ############################################################
 #INSTALLATION PROCEDURES
@@ -34,6 +35,7 @@ class install_scripts_custom(install_scripts):
         if DATA_INSTALL:
             print "Creating plynet_data...",
             system("mkdir -p %s"%DATA_DIR)
+            system("echo 'DATADIR=%s' > plynet/datadir.cfg"%DATA_DIR)
             print "Done."
 
 class install_data_custom(install_data):
