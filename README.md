@@ -13,7 +13,7 @@
 
 ```
 
-# The Python Planetary Package
+# The Python Planetary Physics Package
 
 Presentation
 ------------
