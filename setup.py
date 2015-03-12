@@ -73,6 +73,7 @@ setup(
     package_data= {'plynet':['*.cfg']},
     scripts     = ['plynet_check'],
     data_files  = data_files,
+    test_suite  = "tests",
     cmdclass    = {'install_scripts':install_scripts_custom,
                    'install_data':install_data_custom}
 )
