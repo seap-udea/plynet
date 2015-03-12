@@ -70,8 +70,8 @@ setup(
         ],
     keywords    = "plynet planets",
     packages    = find_packages(exclude=['contrib','docs','tests*']),
-    data_files  = data_files,
     scripts     = ['plynet_check'],
+    data_files  = data_files,
     cmdclass    = {'install_scripts':install_scripts_custom,
                    'install_data':install_data_custom}
 )
