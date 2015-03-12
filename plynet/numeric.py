@@ -15,7 +15,7 @@
 ############################################################
 # Numerical module
 ############################################################
-import plynet
+from plynet import *
 
 ############################################################
 #BASIC REQUIRED PACKAGES
@@ -24,7 +24,7 @@ import plynet
 ############################################################
 #LOAD CONFIGURATION
 ############################################################
-conf=plynet.loadConf(plynet.BASEDIR+"/numeric.cfg")
+loadConfiguration(BASEDIR+"/numeric.cfg",locals())
 
 ############################################################
 #ROUTINES
@@ -34,4 +34,4 @@ conf=plynet.loadConf(plynet.BASEDIR+"/numeric.cfg")
 #TEST
 ###################################################
 if __name__=="__main__":
-    print "Pass."
+    print "Numeric Module."

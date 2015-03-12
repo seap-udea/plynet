@@ -53,7 +53,7 @@ class dict2obj(object):
             exec("self.%s=other.%s"%(attr,attr))
         return self
 
-def System(cmd,out=True):
+def shellExec(cmd,out=True):
     """
     Execute a command
 
@@ -89,7 +89,7 @@ def loadConf(filename):
 
     Examples:
     --------
-    >> loadconf('input.conf')
+    >> conf=loadConf('input.conf')
 
     """
     d=dict()
@@ -102,6 +102,14 @@ def loadConf(filename):
         PRINTERR("Configuration file '%s' does not found."%filename)
         errorCode("FILE_ERROR")
     return conf
+
+"""
+This lambda function allow to load a configuration file into the
+"locals" dictionary of a module.  The objects define in fileconf will
+be defined in the local scope of the module.
+"""
+loadConfiguration=lambda fileconf,scope:scope.\
+    update(loadConf(fileconf).__dict__)
 
 def readArgs(argv,fmts,defs,
              Usage="(No usage defined.)"):
@@ -172,17 +180,24 @@ def copyObject(obj):
     return nobj
 
 ###################################################
-#POST SCRIPT
+#DECORATION
 ###################################################
-conf=loadConf(BASEDIR+"/plynet.cfg")
+def titleShow(msg,char="*",size="auto"):
+    """
+    Generate a text title
+    """
+    if size=="auto":
+        size=len(msg)
+    title=char*size+"\n%s\n"%msg+char*size
+    return title
 
 ###################################################
-#SUBMODULES IMPORT
+#LOAD CONFIGURATION
 ###################################################
-import plynet.numeric
+loadConfiguration(BASEDIR+"/plynet.cfg",locals())
 
 ###################################################
 #TEST
 ###################################################
 if __name__=="__main__":
-    print "Pass."
+    print "Main Module."

@@ -13,19 +13,14 @@
 #                                                          #
 # Jorge I. Zuluaga [)] 2015                                #
 ############################################################
-# Test main package
+# FULL IMPORT
 ############################################################
-from plynet import *
+from plynet.numeric import *
+from plynet.data import *
+from plynet.physics import *
+from plynet.plot import *
 
-print titleShow("Testing Main Package")
-
-#DICT TO OBJ
-res=dict2obj(dict(a=1,b=2))
-print res.a
-
-res2=copyObject(res)
-
-print BASEDIR
-
-print MODULE_NAME
-
+############################################################
+#LOAD CONFIGURATION
+############################################################
+loadConfiguration(BASEDIR+"/full.cfg",locals())

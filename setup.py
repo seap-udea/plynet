@@ -74,6 +74,7 @@ setup(
     scripts     = ['plynet_check'],
     data_files  = data_files,
     test_suite  = "tests",
+    install_requires = ['numpy','scipy'],
     cmdclass    = {'install_scripts':install_scripts_custom,
                    'install_data':install_data_custom}
 )
