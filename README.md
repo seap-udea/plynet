@@ -39,9 +39,70 @@ $ git clone --branch master http://github.com/seap-udea/plynet.git
 If you want to get a different branch of the project just change
 "master" by the name of the branch.
 
-This is the developer copy.  You may also 
+This is the developer copy.  You may also obtain the latest release of
+the installable package, available in the `dist` folder.
 
-Instructions for the contirbutor
+Installing
+----------
+
+Once you have a developer copy or a user release please check the
+options at the beginning of the `setup.py` file.  In particular check
+the directory for installation of the data files.  
+
+Once everything is checked run:
+
+```
+$ python setup.py install 
+```
+
+If you want to install the package in a different directory than the
+system pyhton dir use:
+
+```
+$ python setup.py install --prefix=<path>
+```
+
+where `<path>` is the base directory where to install the package.
+
+It should take into account that even although you modify the prefix
+directory the data associated to the package will still be the same as
+defined at the beginning of `setup.py`.
+
+Managing Data
+-------------
+
+Plynet comes along with diverse data sources (planetary interior
+structure models, stellar evolutionary models, planetary database,
+etc.)
+
+Contributors
+............
+
+Before distributing the package, developers should pack the data in a
+proper container.  
+
+This operation is only recommended when something in the data changes
+or when new data is added.  For packing the data go to the
+"plynet_data" or "data" directory and run:
+
+   ```
+   $ bash packdata.sh
+   ```
+
+Then, have a cup of coffee, this procedure could take a long time.
+
+Final users
+...........
+
+Once the package has been obtained the data is saved in the directory
+`/opt/plynet_data`.  To avoid unpack the data during install it is
+recommended to run the unpack script:
+
+   ```
+   $ bash /opt/plynet_data/packdata.sh
+   ```
+
+Instructions for the contributor
 --------------------------------
 
 1. Generate a public key of your account at the client where you will
@@ -78,40 +139,6 @@ Instructions for the contirbutor
 
    ```
    $ git checkout master
-   ```
-
-Managing Data
--------------
-
-Plynet comes along with diverse data sources (planetary interior
-structure models, stellar evolutionary models, planetary database,
-etc.)
-
-Contributors
-............
-
-Before distributing the package, developers should pack the data in a
-proper container.  
-
-This operation is only recommended when something in the data changes
-or when new data is added.  For packing the data go to the
-"plynet_data" or "data" directory and run:
-
-   ```
-   $ bash packdata.sh
-   ```
-
-Then, have a cup of coffee, this procedure could take a long time.
-
-Final users
-...........
-
-Once the package has been obtained the data is saved in the directory
-`/opt/plynet_data`.  To avoid unpack the data during install it is
-recommended to run the unpack script:
-
-   ```
-   $ bash /opt/plynet_data/packdata.sh
    ```
 
 Licensing
