@@ -26,3 +26,4 @@ confirmed=loadExoplanetCatalogue(systems=CONFIRMED_SYSTEMS,
 kepler=loadExoplanetCatalogue(systems=KEPLER_SYSTEMS,
                               verbose=True)
 
+kepler=1

@@ -194,6 +194,48 @@ def loadExoplanetCatalogue(systems=CONFIRMED_SYSTEMS,forceload=False,
 
     return catalogue
 
+def loadData(filename,typefrm="plynet"):
+    """
+    Read data file
+    
+    Parameters:
+    ----------
+    filename:
+       String.  Absolute path of file.
+       
+    typefrm:
+       Format of input file.  
+       Accepted formats: 
+          plynet: custom format
+          apj_data: apj data tables
+          apj_ascii: apj ascii tables
+          csv: comma separated values
+
+    Returns:
+    -------
+    data:
+       Data in file
+    
+    """
+    
+    fl=open(filename)
+    if typefrm=="plynet":
+        for line in fl:
+            #BLANK LINES
+            if not re.search("\w",line):continue
+            #COMENT LINES
+            if "#" in line:
+                #HEADER LINE
+                if "#0:" in line:
+                    line.strip()
+                    print "HEAD:",line
+            #REST OF LINES
+            else:
+                print "DAT:",line
+
+
+    fl.close()
+
 ###################################################
 #TEST
 ###################################################
