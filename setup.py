@@ -18,12 +18,12 @@
 from setuptools import setup, find_packages
 from distutils.command.install_scripts import install_scripts
 from distutils.command.install_data import install_data
-from os import system
+from os import system,path
 
 ############################################################
 #GLOBAL VARIABLES
 ############################################################
-DATA_INSTALL=False
+DATA_INSTALL=True
 DATA_DIR="/opt/plynet_data/" #Don't forget to end with "/"
 
 ############################################################
@@ -35,16 +35,20 @@ class install_scripts_custom(install_scripts):
         if DATA_INSTALL:
             print "Creating plynet_data...",
             system("mkdir -p %s"%DATA_DIR)
-            system("echo 'DATADIR=%s' > plynet/datadir.cfg"%DATA_DIR)
+            system("""echo "DATADIR='%s'" > plynet/datadir.cfg"""%DATA_DIR)
             print "Done."
 
 class install_data_custom(install_data):
     def run(self):
         install_data.run(self)
         if DATA_INSTALL:
-            print "Unpacking data...",
-            system("bash -x %s/unpack.sh &> /tmp/pack.log"%DATA_DIR)
-            print "Done."
+            if not path.isfile("data/pack.tar"):
+                system("cat data/pack/data_* > data/pack.tar")
+                print "Unpacking data...",
+                system("bash -x %s/unpack.sh &> /tmp/pack.log"%DATA_DIR)
+                print "Done."
+            else:
+                print "Data already unpacked..."
 
 ############################################################
 #SETUP
