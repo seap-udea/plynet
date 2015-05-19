@@ -1,4 +1,3 @@
-
 BRANCH=$(shell bash .getbranch)
 
 clean:
