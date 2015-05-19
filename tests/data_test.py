@@ -21,9 +21,10 @@ print titleShow("Testing Data Module")
 
 print MODULE_NAME
 
+"""
 confirmed=loadExoplanetCatalogue(systems=CONFIRMED_SYSTEMS,
                                  verbose=True)
 kepler=loadExoplanetCatalogue(systems=KEPLER_SYSTEMS,
                               verbose=True)
-
 kepler=1
+"""

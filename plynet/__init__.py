@@ -19,12 +19,17 @@
 ############################################################
 #BASIC REQUIRED PACKAGES
 ############################################################
-import os,commands,re
+import os,commands,re,sys,warnings
 
 ############################################################
 #GLOBAL VARIABLES
 ############################################################
 BASEDIR=os.path.dirname(__file__)
+
+############################################################
+#MACROS
+############################################################
+exit=sys.exit
 
 ############################################################
 #COMMON ROUTINES
@@ -128,9 +133,9 @@ def readArgs(argv,fmts,defs,
 
     Examples:
     --------
-    $ dir,$conf,$qover=readArgs(argv,
-                                ["str","float","int"],
-                                ["gato","1.0","30"])
+    dir,conf,qover=readArgs(argv,
+                            ["str","float","int"],
+                            ["gato","1.0","30"])
     """
 
     try:
@@ -148,6 +153,49 @@ def readArgs(argv,fmts,defs,
         if argv[i]=='--':argv[i]=defs[i-1]
         exec("args+=[%s(argv[i])]"%fmts[i-1])
     return args
+
+def readParameter(typepar,parameter,default,verbose=False):
+    """
+    Read a parameter from the command line parameters.
+    
+    Parameters:
+    ----------
+    
+    typevar:
+       Function.  Function to convert parameter.
+
+    parameter:
+       String.  Name of the parameter.
+
+    default:
+       String.  Default value.
+
+    Return:
+    ------
+
+    Value of the parameter
+
+    Examples:
+    --------
+    
+        >> verbose=readParameter("int","verbose","1")
+        >> load=readParameter("int","load","1")
+        >> pset=readParameter("str","pset","Swift+2015-short_cadence")
+
+    
+    """
+    value=None
+    if verbose:print "Parameter:",parameter
+    for arg in sys.argv:
+        if verbose:print "\tArgument:",arg
+        m=re.search("%s=(.+)"%parameter,arg)
+        if m is None:continue
+        value=m.group(1)
+        if verbose:print "\tValue:",value
+    if value is None:value=default
+    if verbose:print "Value:",value
+    exec("valuefrm=%s(%s)"%(typepar,value))
+    return valuefrm
 
 def copyObject(obj):
     """
@@ -178,6 +226,20 @@ def copyObject(obj):
 
     nobj=dict2obj(new)
     return nobj
+
+def errorMsg(funcName,msg,extra="none"):
+    """
+    Launch error and exit with error code.
+    """
+    print "%s Error: %s. Information: %s"%(funcName,msg,extra)
+    exit(1)
+
+def notNone(var):
+    """
+    Check if variable is not None
+    """
+    if var is None:return False
+    else:return True
 
 ###################################################
 #DECORATION

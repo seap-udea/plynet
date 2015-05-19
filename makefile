@@ -17,5 +17,8 @@ pull:
 	@git reset --hard HEAD	
 	@git pull origin $(BRANCH)
 
+edit:
+	emacs -nw makefile plynet/*.py plynet/*.cfg
+
 branch:
 	@echo $(BRANCH)
